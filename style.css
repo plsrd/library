@@ -1,0 +1,20 @@
+#shelf {
+  margin: 0 auto;
+  padding: 2em 0;
+  width: 90vw;
+  height: 80vh;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: center;
+  justify-content: flex-start;
+}
+
+.book {
+  border: 2px solid red;
+  margin: 1em;
+  width: 200px;
+  height: 300px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
