@@ -46,6 +46,7 @@ nav button {
 h1 {
   font-size: 1.8em;
   padding-bottom: .1em;
+  font-weight: bold;
 }
 
 .logo p {
