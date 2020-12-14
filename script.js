@@ -46,7 +46,20 @@ function updateDisplay(book) {
 
 const addBookButton = document.querySelector('button');
 
-addBookButton.addEventListener('mouseover', () => {
+addBookButton.addEventListener('mouseover', (e) => {
   addBookButton.classList.add('hover')
-  addBookButton.textContent = 'Add book +'
-})
+  let prevEvent = e;
+  addBookButton.addEventListener('transitionend', () => { 
+    if (addBookButton.classList.contains('hover')) {
+    addBookButton.textContent = 'Add book +'
+    prevEvent = undefined;
+    }
+  });
+});
+
+addBookButton.addEventListener('mouseleave', () => {
+  addBookButton.classList.remove('hover')
+  addBookButton.textContent = '+'
+});
+
+
