@@ -1,3 +1,46 @@
+main {
+  max-width: 100vw;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2em 3em;
+}
+
+img {
+  align-self: center;
+}
+
+button {
+  align-self: center;
+  border: none;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  font-size: 1em;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.hover {
+  width: 150px;
+  border-radius: 3em;
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  font-family: 'Montserrat', sans-serif;
+  align-items: flex-end;
+  font-size: 1.8em;
+}
+
+.logo h1 {
+  padding-bottom: .1em;
+}
+
 #shelf {
   margin: 0 auto;
   padding: 2em 0;

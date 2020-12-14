@@ -1,3 +1,9 @@
+/*addBookToLibrary('Ghostwritten', 'David Mitchell', 496, true);
+addBookToLibrary('Early Riser', 'Jasper Fforde', 413, true);
+addBookToLibrary('The Shining', 'Stephen King', 688, false);
+addBookToLibrary('Dune', 'Frank Herbert', 704, true);
+addBookToLibrary('Sabriel', 'Garth Nix', 496, true);
+addBookToLibrary('The Forever War', 'Joe Haldeman', 264, true);*/
 
 let myLibrary = [];
 
@@ -19,14 +25,6 @@ function addBookToLibrary(title, author, pages, isRead) {
 
 const shelf = document.getElementById('shelf');
 
-
-addBookToLibrary('Ghostwritten', 'David Mitchell', 496, true);
-addBookToLibrary('Early Riser', 'Jasper Fforde', 413, true);
-addBookToLibrary('The Shining', 'Stephen King', 688, false);
-addBookToLibrary('Dune', 'Frank Herbert', 704, true);
-addBookToLibrary('Sabriel', 'Garth Nix', 496, true);
-addBookToLibrary('The Forever War', 'Joe Haldeman', 264, true);
-
 function updateDisplay(book) {
   const div = document.createElement('div');
   const title = document.createElement('h2');
@@ -45,3 +43,10 @@ function updateDisplay(book) {
   read.setAttribute('type', 'checkbox');
   (book.isRead) ? read.checked = true : read.checked = false;
 }
+
+const addBookButton = document.querySelector('button');
+
+addBookButton.addEventListener('mouseover', () => {
+  addBookButton.classList.add('hover')
+  addBookButton.textContent = 'Add book +'
+})
