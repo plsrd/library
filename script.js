@@ -65,13 +65,24 @@ function createForm(form) {
   const pages = document.createElement('input');
   const isRead = document.createElement('input');
   const newLabel = document.createElement('label');
-  submitBook.setAttribute('type','button');
-  form.appendChild(title);
-  title.value = '  Title';
-  form.appendChild(author);
-  author.value = '  Author';
-  form.appendChild(pages);
-  pages.value = '  Pages';
+  const inputDiv = document.createElement('div');
+  const cancelButton = document.createElement('button');
+  form.appendChild(cancelButton);
+  cancelButton.textContent = 'x';
+  cancelButton.setAttribute('id', 'cancel');
+  form.appendChild(inputDiv);
+  inputDiv.appendChild(title);
+  title.placeholder = '  Title';
+  title.setAttribute('onfocus', "this.placeholder = ''")
+  title.setAttribute('type', 'text');
+  inputDiv.appendChild(author);
+  author.placeholder = '  Author';
+  author.setAttribute('onfocus', "this.placeholder = ''")
+  author.setAttribute('type', 'text');
+  inputDiv.appendChild(pages);
+  pages.placeholder = '  Pages';
+  pages.setAttribute('onfocus', "this.placeholder = ''")
+  pages.setAttribute('type', 'text');
   form.appendChild(newLabel);
   newLabel.setAttribute('for', 'isRead');
   newLabel.innerText = 'Book Completed';
@@ -80,6 +91,7 @@ function createForm(form) {
   isRead.setAttribute('type', 'checkbox');
   isRead.setAttribute('id', 'isRead');
   form.appendChild(submitBook);
+  submitBook.setAttribute('type', 'submit');
   submitBook.value = 'Add book';
 
 }

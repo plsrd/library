@@ -37,6 +37,10 @@ nav button {
   box-shadow:         2px 2px 0px 1px rgba(0, 0, 0, 1);
 }
 
+nav button:focus {
+  outline: black;
+}
+
 .hover {
   font-size: 1em;
   width: 150px;
@@ -102,29 +106,63 @@ h1 {
 
 .book {
   margin: 1em;
-  padding: 1em 0;
   width: 200px;
   height: 300px;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  background-color: black;
-  border-radius: .4em;
-  color: white;
+  border-radius: .3em;
   box-sizing: border-box;
+  border: 3px solid black;
 }
 
 form {
+  padding: 0;
   display: flex;
   flex-direction: column;
+  font-weight: bold;
 }
 
-form input {
+form input[type=text] {
+  box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
-  border: none;
+  border: 2px solid black;
   height: 2em;
-  width: 80%;
-  border-radius: 1em;
+  width: 90%;
+  border-radius: .3em;
   margin: .3em;
+  font-weight: bold;
+  padding: 0 .5em;
 }
 
+form input[type=text]:focus{
+  outline: black;
+}
+
+form div{
+  margin: 1em 0 2em;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#cancel {
+  align-self: flex-start;
+  background-color: black;
+  color: white;
+  border: 2px solid black;
+  border-radius: .3em;
+  margin: .3em 0 0 .3em;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+#cancel:hover {
+  background-color: white;
+  color: black;
+  -webkit-box-shadow: 2px 2px 0px 1px rgba(0, 0, 0, 1);
+  -moz-box-shadow:    2px 2px 0px 1px rgba(0, 0, 0, 1);
+  box-shadow:         2px 2px 0px 1px rgba(0, 0, 0, 1);
+}
