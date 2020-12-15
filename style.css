@@ -13,7 +13,7 @@ nav {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 2em 0
+  padding: 2em 0;
 }
 
 img {
@@ -23,17 +23,23 @@ img {
 nav button {
   align-self: center;
   border: none;
-  border-radius: 50%;
   height: 50px;
   width: 50px;
-  font-size: 1em;
+  font-size: 1.5em;
   transition: .1s;
   font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: .2em;
+  -webkit-box-shadow: 2px 2px 0px 1px rgba(0, 0, 0, 1);
+  -moz-box-shadow:    2px 2px 0px 1px rgba(0, 0, 0, 1);
+  box-shadow:         2px 2px 0px 1px rgba(0, 0, 0, 1);
 }
 
 .hover {
+  font-size: 1em;
   width: 150px;
-  border-radius: 3em;
 }
 
 .logo {
@@ -59,14 +65,29 @@ h1 {
 
 .view-options button {
   border: none;
-  padding: .5em;
+  padding: .25em .5em;
   margin: 0 .2em;
   font-size: .9em;
-  border-radius: 10%;
+  border-radius: 9%;
   font-family: 'Montserrat', sans-serif;
-  background-color: black;
-  color: white;
   font-weight: bold;
+  background-color: white;
+  border: 2px solid black;
+  -webkit-box-shadow: 2px 2px 0px 1px rgba(0, 0, 0, 1);
+  -moz-box-shadow:    2px 2px 0px 1px rgba(0, 0, 0, 1);
+  box-shadow:         2px 2px 0px 1px rgba(0, 0, 0, 1);
+}
+
+.view-options button:focus {
+  outline: none;
+  -webkit-box-shadow: -2px -2px 0px 0px rgba(0, 0, 0, 1);
+  -moz-box-shadow:    -2px -2px 0px 0px rgba(0, 0, 0, 1);
+  box-shadow:         -2px -2px 0px 0px rgba(0, 0, 0, 1);
+}
+
+.view-options button:hover {
+  color: white;
+  background-color: black;
 }
 
 #shelf {
@@ -76,8 +97,7 @@ h1 {
   height: 80vh;
   display: flex;
   flex-flow: row wrap;
-  align-content: center;
-  justify-content: flex-start;
+  align-content: flex-start;
 }
 
 .book {

@@ -90,9 +90,29 @@ addBookButton.addEventListener('click', () => {
   createForm(form);
 });
 
+function sortAuthor() {
+    let libraryByAuth = myLibrary.sort((a, b) => {
+    let aNames = a.author.split(" ");
+    let bNames = b.author.split(" ");
+    if (aNames[1][0] < bNames[1][0]) {
+      return -1
+    } else {
+      return 1
+    }
+  });
+  console.log(libraryByAuth);
+}
+
+const author = document.getElementById('author');
+
+author.addEventListener('click', () => {
+  sortAuthor();
+});
+
 addBookToLibrary('Ghostwritten', 'David Mitchell', 496, true);
 addBookToLibrary('Early Riser', 'Jasper Fforde', 413, true);
 addBookToLibrary('The Shining', 'Stephen King', 688, false);
 addBookToLibrary('Dune', 'Frank Herbert', 704, true);
 addBookToLibrary('Sabriel', 'Garth Nix', 496, true);
 addBookToLibrary('The Forever War', 'Joe Haldeman', 264, true);
+
