@@ -150,9 +150,13 @@ addBookButton.addEventListener('mouseleave', () => {
 
 addBookButton.addEventListener('click', () => {
   const form = document.createElement('form');
+  if (shelf.querySelector('form') !== null ) { 
+    return
+  } else {  
   shelf.prepend(form);
   form.classList.add('book');
   createForm(form);
+  }
 });
 
 author.addEventListener('click', () => {
