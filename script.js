@@ -11,6 +11,7 @@ const addBookButton = document.getElementById('add');
 const author = document.getElementById('author');
 const title = document.getElementById('title');
 const length = document.getElementById('length');
+const unread = document.getElementById('unread');
 
 
 function Book() {
@@ -115,6 +116,10 @@ function sortLength() {
   });
 }
 
+function sortUnread() {
+  libraryUnread = myLibrary.filter(book => book.isRead === false);
+}
+
 addBookButton.addEventListener('mouseover', (e) => {
   addBookButton.classList.add('hover')
   let prevEvent = e;
@@ -153,6 +158,10 @@ length.addEventListener('click', () => {
   sortBookDisplay(libraryByLength);
 });
 
+unread.addEventListener('click', () => {
+  sortUnread();
+  sortBookDisplay(libraryUnread);
+});
 
 
 
