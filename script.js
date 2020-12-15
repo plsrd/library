@@ -1,9 +1,4 @@
-/*addBookToLibrary('Ghostwritten', 'David Mitchell', 496, true);
-addBookToLibrary('Early Riser', 'Jasper Fforde', 413, true);
-addBookToLibrary('The Shining', 'Stephen King', 688, false);
-addBookToLibrary('Dune', 'Frank Herbert', 704, true);
-addBookToLibrary('Sabriel', 'Garth Nix', 496, true);
-addBookToLibrary('The Forever War', 'Joe Haldeman', 264, true);*/
+
 
 let myLibrary = [];
 
@@ -44,7 +39,7 @@ function updateDisplay(book) {
   (book.isRead) ? read.checked = true : read.checked = false;
 }
 
-const addBookButton = document.querySelector('button');
+const addBookButton = document.getElementById('add');
 
 addBookButton.addEventListener('mouseover', (e) => {
   addBookButton.classList.add('hover')
@@ -62,4 +57,45 @@ addBookButton.addEventListener('mouseleave', () => {
   addBookButton.textContent = '+'
 });
 
+function createForm(form) {
+  const submitBook = document.createElement('input');
+  const title = document.createElement('input');
+  const author = document.createElement('input');
+  const pages = document.createElement('input');
+  const isRead = document.createElement('input');
+  const newLabel = document.createElement('label');
+  const span = document.createElement('span');
+  submitBook.setAttribute('type','button');
+  form.appendChild(title);
+  title.value = 'Title';
+  form.appendChild(author);
+  author.value = 'Author';
+  form.appendChild(pages);
+  pages.value = 'Pages'
+  form.appendChild(newLabel)
+  newLabel.setAttribute('for', 'isRead');
+  newLabel.innerText = 'Book Completed';
+  newLabel.classList.add('switch')
+  newLabel.appendChild(isRead);
+  isRead.setAttribute('type', 'checkbox');
+  isRead.setAttribute('id', 'isRead')
+  newLabel.appendChild(span);
+  span.setAttribute('class', 'slider-round')
+  form.appendChild(submitBook);
+  submitBook.value = 'Add book';
 
+}
+
+addBookButton.addEventListener('click', () => {
+  const form = document.createElement('form');
+  shelf.prepend(form);
+  form.classList.add('book');
+  createForm(form);
+});
+
+addBookToLibrary('Ghostwritten', 'David Mitchell', 496, true);
+addBookToLibrary('Early Riser', 'Jasper Fforde', 413, true);
+addBookToLibrary('The Shining', 'Stephen King', 688, false);
+addBookToLibrary('Dune', 'Frank Herbert', 704, true);
+addBookToLibrary('Sabriel', 'Garth Nix', 496, true);
+addBookToLibrary('The Forever War', 'Joe Haldeman', 264, true);

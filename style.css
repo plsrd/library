@@ -3,6 +3,7 @@ main {
   font-family: 'Montserrat', sans-serif;
   display: flex;
   flex-direction: column;
+  padding: 2em 3em;
 }
 
 nav {
@@ -10,7 +11,7 @@ nav {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 2em 3em;
+  padding: 2em 0
 }
 
 img {
@@ -53,9 +54,6 @@ h1 {
   font-size: .9em;
 }
 
-.view-options {
-  margin: 0 3em;
-}
 
 .view-options button {
   border: none;
