@@ -64,23 +64,20 @@ function createForm(form) {
   const pages = document.createElement('input');
   const isRead = document.createElement('input');
   const newLabel = document.createElement('label');
-  const span = document.createElement('span');
   submitBook.setAttribute('type','button');
   form.appendChild(title);
-  title.value = 'Title';
+  title.value = '  Title';
   form.appendChild(author);
-  author.value = 'Author';
+  author.value = '  Author';
   form.appendChild(pages);
-  pages.value = 'Pages'
-  form.appendChild(newLabel)
+  pages.value = '  Pages';
+  form.appendChild(newLabel);
   newLabel.setAttribute('for', 'isRead');
   newLabel.innerText = 'Book Completed';
-  newLabel.classList.add('switch')
+  newLabel.classList.add('switch');
   newLabel.appendChild(isRead);
   isRead.setAttribute('type', 'checkbox');
-  isRead.setAttribute('id', 'isRead')
-  newLabel.appendChild(span);
-  span.setAttribute('class', 'slider-round')
+  isRead.setAttribute('id', 'isRead');
   form.appendChild(submitBook);
   submitBook.value = 'Add book';
 

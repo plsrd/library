@@ -1,3 +1,5 @@
+
+
 main {
   max-width: 100vw;
   font-family: 'Montserrat', sans-serif;
@@ -62,6 +64,9 @@ h1 {
   font-size: .9em;
   border-radius: 10%;
   font-family: 'Montserrat', sans-serif;
+  background-color: black;
+  color: white;
+  font-weight: bold;
 }
 
 #shelf {
@@ -76,11 +81,30 @@ h1 {
 }
 
 .book {
-  border: 2px solid red;
   margin: 1em;
+  padding: 1em 0;
   width: 200px;
   height: 300px;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  background-color: black;
+  border-radius: .4em;
+  color: white;
+  box-sizing: border-box;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form input {
+  font-family: 'Montserrat', sans-serif;
+  border: none;
+  height: 2em;
+  width: 80%;
+  border-radius: 1em;
+  margin: .3em;
+}
+
