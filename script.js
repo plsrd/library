@@ -1,6 +1,7 @@
 
 
 let myLibrary = [];
+let libraryByAuth;
 
 function Book() {
   this.info = function() {
@@ -91,7 +92,7 @@ addBookButton.addEventListener('click', () => {
 });
 
 function sortAuthor() {
-    let libraryByAuth = myLibrary.sort((a, b) => {
+    libraryByAuth = myLibrary.sort((a, b) => {
     let aNames = a.author.split(" ");
     let bNames = b.author.split(" ");
     if (aNames[1][0] < bNames[1][0]) {
@@ -100,14 +101,23 @@ function sortAuthor() {
       return 1
     }
   });
-  console.log(libraryByAuth);
 }
 
 const author = document.getElementById('author');
 
 author.addEventListener('click', () => {
   sortAuthor();
+  sortBookDisplay(libraryByAuth);
 });
+
+function sortBookDisplay(arr) {
+  while(shelf.firstChild) {
+    shelf.removeChild(shelf.firstChild);
+  }
+  arr.forEach(book => {
+    updateDisplay(book);
+  });
+}
 
 addBookToLibrary('Ghostwritten', 'David Mitchell', 496, true);
 addBookToLibrary('Early Riser', 'Jasper Fforde', 413, true);
