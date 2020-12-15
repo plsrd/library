@@ -33,20 +33,25 @@ function addBookToLibrary(title, author, pages, isRead) {
 function updateDisplay(book) {
   const div = document.createElement('div');
   const title = document.createElement('h2');
-  const author = document.createElement('p');
+  const author = document.createElement('h3');
   const numPages = document.createElement('p');
   const read = document.createElement('input');
+  const hr = document.createElement('hr');
+  const bottomInfo = document.createElement('div');
   shelf.appendChild(div);
   div.className = 'book';
   div.appendChild(title);
   title.textContent = `${book.title}`;
+  div.appendChild(hr);
   div.appendChild(author);
   author.textContent = `${book.author}`;
-  div.appendChild(numPages);
-  numPages.textContent = `${book.pages}`;
-  div.appendChild(read);
+  div.appendChild(bottomInfo);
+  bottomInfo.classList.add('bottomInfo');
+  bottomInfo.appendChild(read);
   read.setAttribute('type', 'checkbox');
   (book.isRead) ? read.checked = true : read.checked = false;
+  bottomInfo.appendChild(numPages);
+  numPages.textContent = `${book.pages} pages`;
 }
 
 function sortBookDisplay(arr) {
@@ -63,37 +68,56 @@ function createForm(form) {
   const title = document.createElement('input');
   const author = document.createElement('input');
   const pages = document.createElement('input');
-  const isRead = document.createElement('input');
-  const newLabel = document.createElement('label');
   const inputDiv = document.createElement('div');
   const cancelButton = document.createElement('button');
+  const switchLabel = document.createElement('label');
+  const toggle = document.createElement('input');
+  const toggleDiv = document.createElement('div');
+  const on = document.createElement('span');
+  const off = document.createElement('span');
+
   form.appendChild(cancelButton);
   cancelButton.textContent = 'x';
   cancelButton.setAttribute('id', 'cancel');
+
   form.appendChild(inputDiv);
   inputDiv.appendChild(title);
-  title.placeholder = '  Title';
+  title.placeholder = 'Title';
   title.setAttribute('onfocus', "this.placeholder = ''")
   title.setAttribute('type', 'text');
+
   inputDiv.appendChild(author);
-  author.placeholder = '  Author';
+  author.placeholder = 'Author';
   author.setAttribute('onfocus', "this.placeholder = ''")
   author.setAttribute('type', 'text');
+
   inputDiv.appendChild(pages);
-  pages.placeholder = '  Pages';
+  inputDiv.setAttribute('id', 'inputDiv');
+  pages.placeholder = 'Pages';
   pages.setAttribute('onfocus', "this.placeholder = ''")
   pages.setAttribute('type', 'text');
-  form.appendChild(newLabel);
-  newLabel.setAttribute('for', 'isRead');
-  newLabel.innerText = 'Book Completed';
-  newLabel.classList.add('switch');
-  newLabel.appendChild(isRead);
-  isRead.setAttribute('type', 'checkbox');
-  isRead.setAttribute('id', 'isRead');
+
+  form.appendChild(switchLabel);
+  switchLabel.classList.add('switch');
+
+  switchLabel.appendChild(toggle);
+  toggle.setAttribute('type', 'checkbox');
+
+  switchLabel.appendChild(toggleDiv);
+  toggleDiv.classList.add('slider');
+
+  toggleDiv.appendChild(on);
+  on.classList.add('on');
+  on.textContent = 'read';
+
+  toggleDiv.appendChild(off);
+  off.classList.add('off');
+  off.textContent = 'unread';
+
   form.appendChild(submitBook);
   submitBook.setAttribute('type', 'submit');
+  submitBook.setAttribute('id', 'submit');
   submitBook.value = 'Add book';
-
 }
 
 function sortAuthor() {
