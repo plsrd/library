@@ -8,6 +8,7 @@ let libraryUnread;
 
 const shelf = document.getElementById('shelf');
 const addBookButton = document.getElementById('add');
+// Sort buttions
 const author = document.getElementById('author');
 const title = document.getElementById('title');
 const length = document.getElementById('length');
@@ -25,7 +26,7 @@ function addBookToLibrary(title, author, pages, isRead) {
   newBook.title = title;
   newBook.author = author;
   newBook.pages = pages;
-  newBook.isRead = isRead;
+  newBook.isRead = (isRead === 'on');
   myLibrary.push(newBook);
   updateDisplay(newBook);
 }
@@ -69,43 +70,43 @@ function sortBookDisplay(arr) {
 
 function createForm(form) {
   const submitBook = document.createElement('input');
-  const title = document.createElement('input');
-  const author = document.createElement('input');
-  const pages = document.createElement('input');
+  const titleInput = document.createElement('input');
+  const authorInput = document.createElement('input');
+  const pagesInput = document.createElement('input');
   const inputDiv = document.createElement('div');
   const cancelButton = document.createElement('button');
   const switchLabel = document.createElement('label');
-  const toggle = document.createElement('input');
+  const isRead = document.createElement('input');
   const toggleDiv = document.createElement('div');
   const on = document.createElement('span');
   const off = document.createElement('span');
-
+  form.setAttribute('id', 'form');
   form.appendChild(cancelButton);
   cancelButton.textContent = 'x';
   cancelButton.setAttribute('id', 'cancel');
 
   form.appendChild(inputDiv);
-  inputDiv.appendChild(title);
-  title.placeholder = 'Title';
-  title.setAttribute('onfocus', "this.placeholder = ''")
-  title.setAttribute('type', 'text');
+  inputDiv.appendChild(titleInput);
+  titleInput.placeholder = 'Title';
+  titleInput.setAttribute('onfocus', "this.placeholder = ''")
+  titleInput.setAttribute('type', 'text');
 
-  inputDiv.appendChild(author);
-  author.placeholder = 'Author';
-  author.setAttribute('onfocus', "this.placeholder = ''")
-  author.setAttribute('type', 'text');
+  inputDiv.appendChild(authorInput);
+  authorInput.placeholder = 'Author';
+  authorInput.setAttribute('onfocus', "this.placeholder = ''")
+  authorInput.setAttribute('type', 'text');
 
-  inputDiv.appendChild(pages);
+  inputDiv.appendChild(pagesInput);
   inputDiv.setAttribute('id', 'inputDiv');
-  pages.placeholder = 'Number of Pages';
-  pages.setAttribute('onfocus', "this.placeholder = ''")
-  pages.setAttribute('type', 'text');
+  pagesInput.placeholder = 'Number of pages';
+  pagesInput.setAttribute('onfocus', "this.placeholder = ''")
+  pagesInput.setAttribute('type', 'text');
 
   form.appendChild(switchLabel);
   switchLabel.classList.add('switch');
 
-  switchLabel.appendChild(toggle);
-  toggle.setAttribute('type', 'checkbox');
+  switchLabel.appendChild(isRead);
+  isRead.setAttribute('type', 'checkbox');
 
   switchLabel.appendChild(toggleDiv);
   toggleDiv.classList.add('slider');
@@ -114,26 +115,37 @@ function createForm(form) {
   on.classList.add('on');
   on.textContent = 'read';
 
+
   toggleDiv.appendChild(off);
   off.classList.add('off');
   off.textContent = 'unread';
+ 
 
   form.appendChild(submitBook);
-  submitBook.setAttribute('type', 'submit');
+  submitBook.setAttribute('type', 'button');
   submitBook.setAttribute('id', 'submit');
   submitBook.value = 'Add book';
+
+  submitBook.addEventListener('click', () => {
+    shelf.removeChild(document.getElementById('form'));
+    addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, isRead.value);
+  });
 }
 
 function sortAuthor() {
   libraryByAuth = myLibrary.sort((a, b) => {
-  let aNames = a.author.split(" ");
-  let bNames = b.author.split(" ");
-  if (aNames[1][0] < bNames[1][0]) {
-    return -1
-  } else {
-    return 1
-  }
-});
+    let aNames = a.author.split(" ");
+    let bNames = b.author.split(" ");
+    console.log(aNames);
+    console.log(bNames);
+    if(aNames[1] === undefined) { aNames.push(" ")};
+    if(aNames[1] === undefined) { aNames.push(" ")};
+    if (aNames[1][0] < bNames[1][0]) {
+      return -1
+    } else {
+      return 1
+    }
+  }); 
 }
 
 function sortTitle() {
@@ -157,7 +169,8 @@ function sortLength() {
 }
 
 function sortUnread() {
-  libraryUnread = myLibrary.filter(book => book.isRead === false);
+  libraryUnread = myLibrary.slice();
+  libraryUnread = libraryUnread.filter(book => book.isRead === false);
 }
 
 addBookButton.addEventListener('mouseover', (e) => {
@@ -208,11 +221,13 @@ unread.addEventListener('click', () => {
 });
 
 
+addBookToLibrary('Ghostwritten', 'David Mitchell', 496, 'on');
+addBookToLibrary('Early Riser', 'Jasper Fforde', 413, 'on');
+addBookToLibrary('The Shining', 'Stephen King', 688, 'off');
+addBookToLibrary('Dune', 'Frank Herbert', 704, 'on');
+addBookToLibrary('Sabriel', 'Garth Nix', 496, 'on');
+addBookToLibrary('The Forever War', 'Joe Haldeman', 264, 'on');
 
-addBookToLibrary('Ghostwritten', 'David Mitchell', 496, true);
-addBookToLibrary('Early Riser', 'Jasper Fforde', 413, true);
-addBookToLibrary('The Shining', 'Stephen King', 688, false);
-addBookToLibrary('Dune', 'Frank Herbert', 704, true);
-addBookToLibrary('Sabriel', 'Garth Nix', 496, true);
-addBookToLibrary('The Forever War', 'Joe Haldeman', 264, true);
+
+
 
