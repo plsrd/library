@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)http://127.0.0.1:5500/index.html? -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image/jpg" href="./NovelStack_files/125516.png">
+  <link rel="stylesheet" href="./NovelStack_files/reset.css">
+  <link rel="stylesheet" href="./NovelStack_files/style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com/">
+  <link href="./NovelStack_files/css2" rel="stylesheet">
+  <script src="./NovelStack_files/script.js" defer=""></script>
+  <title>NovelStack</title>
+</head>
+<body data-new-gr-c-s-check-loaded="14.987.0" data-gr-ext-installed="">
+  <main>
+  <nav>
+    <div class="logo">
+      <img src="./NovelStack_files/125516.png" alt="logo">
+      <div class="logo-text">
+        <h1>NovelStack</h1>
+        <p>a minimalist book tracker</p>
+      </div>
+    </div>
+    <button id="add">+</button>
+  </nav>
+  <div class="view-options">
+    Sort by: 
+    <button id="author">Author</button>
+    <button id="title">Title</button>
+    <button id="length">Length</button>
+    <button id="unread">Unread</button>
+  </div>
+  <div id="shelf"><div class="book"><h2>Ghostwritten</h2><hr><h3>David Mitchell</h3><div class="bottomInfo"><img src="./NovelStack_files/check-mark.png"><p>496 pages</p></div></div><div class="book"><h2>Early Riser</h2><hr><h3>Jasper Fforde</h3><div class="bottomInfo"><img src="./NovelStack_files/check-mark.png"><p>413 pages</p></div></div><div class="book"><input class="editTitle" placeholder="The Shining"><hr><input placeholder="Stephen King"><label class="switch"><input type="checkbox"><div class="slider"><span class="on">read</span><span class="off">unread</span></div></label><input placeholder="688"></div><div class="book"><h2>Dune</h2><hr><h3>Frank Herbert</h3><div class="bottomInfo"><img src="./NovelStack_files/check-mark.png"><p>704 pages</p></div></div><div class="book"><h2>Sabriel</h2><hr><h3>Garth Nix</h3><div class="bottomInfo"><img src="./NovelStack_files/check-mark.png"><p>496 pages</p></div></div><div class="book"><h2>The Forever War</h2><hr><h3>Joe Haldeman</h3><div class="bottomInfo"><img src="./NovelStack_files/check-mark.png"><p>264 pages</p></div></div></div>
+</main>
+<!-- Code injected by live-server -->
+<script type="text/javascript">
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body></html>

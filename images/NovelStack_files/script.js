@@ -5,7 +5,6 @@ let libraryByAuth;
 let libraryByTitle;
 let libraryByLength;
 let libraryUnread;
-let isReadValue;
 
 const shelf = document.getElementById('shelf');
 const addBookButton = document.getElementById('add');
@@ -59,24 +58,26 @@ function updateDisplay(book) {
     numPages.classList.add('pagesOnly');
   }
   div.addEventListener('click', () => {
-
     editMode(div);
   })
 }
 
-function editMode(div) {
-  if (div.classList.contains('editMode')) {
-    return;
-  }
-  div.classList.add('editMode');
-  const titleValue = div.getElementsByTagName('h2')[0].textContent;
-  const authorValue = div.getElementsByTagName('h3')[0].textContent;
-  const pagesValue = div.getElementsByTagName('p')[0].textContent.split(' ')[0];
-  let isReadValue = myLibrary.find(book => book.title === titleValue).isRead;
-  while(div.firstChild) {
-    div.removeChild(div.firstChild);
-  }
-  createEditForm(div, titleValue, authorValue, pagesValue, isReadValue);
+  function editMode(div) {
+    const titleValue = div.getElementsByTagName('h2')[0].textContent;
+    const authorValue = div.getElementsByTagName('h3')[0].textContent;
+    const pagesValue = div.getElementsByTagName('p')[0].textContent.split(' ')[0];
+    let isReadValue;
+    if (div.getElementsByTagName('img') !== undefined) {
+      isReadValue = true;
+    } else {
+      isReadValue = false;
+    }
+    while(div.firstChild) {
+      div.removeChild(div.firstChild);
+    }
+    console.log(isReadValue);
+    createEditForm(div, titleValue, authorValue, pagesValue, isReadValue);
+    
 }
 
 function createEditForm(div, titleValue, authorValue, pagesValue, isReadValue){
@@ -89,26 +90,16 @@ function createEditForm(div, titleValue, authorValue, pagesValue, isReadValue){
   const on = document.createElement('span');
   const off = document.createElement('span');
   const hr = document.createElement('hr');
-  const submitChanges = document.createElement('button');
-  const bottomInfo = document.createElement('div');
-  const switchContainer = document.createElement('div');
   div.appendChild(editTitle);
-  editTitle.setAttribute('id', 'editTitle');
+  editTitle.classList.add('editTitle');
   editTitle.placeholder = titleValue;
   div.appendChild(hr);
   div.appendChild(editAuthor);
   editAuthor.placeholder = authorValue;
-  editAuthor.setAttribute('id', 'editAuthor');
-  div.appendChild(bottomInfo);
-  bottomInfo.appendChild(switchContainer);
-  bottomInfo.classList.add('bottomInfo');
-  switchContainer.appendChild(switchLabel);
+  div.appendChild(switchLabel);
   switchLabel.classList.add('switch');
   switchLabel.appendChild(isRead);
   isRead.setAttribute('type', 'checkbox');
-  if(isReadValue === true) {
-    isRead.checked = true;
-  }
   switchLabel.appendChild(toggleDiv);
   toggleDiv.classList.add('slider');
   toggleDiv.appendChild(on);
@@ -117,13 +108,12 @@ function createEditForm(div, titleValue, authorValue, pagesValue, isReadValue){
   toggleDiv.appendChild(off);
   off.classList.add('off');
   off.textContent = 'unread';
-  bottomInfo.appendChild(editPages);
+  if(isReadValue === true) {
+    isRead.checked = true;
+  }
+  div.appendChild(editPages);
   editPages.placeholder = pagesValue;
-  editPages.setAttribute('id', 'editPages');
-  div.appendChild(submitChanges);
-  submitChanges.setAttribute('type', 'button');
-  submitChanges.setAttribute('id', 'submit');
-  submitChanges.textContent = 'Save Changes';
+
 }
 
 

@@ -234,6 +234,7 @@ input:checked + .slider:before {
 }
 
 .on, .off {
+  padding-top: 1px;
   position: absolute;
   transform: translate(-50%,-50%);
   font-size: .8em;
@@ -270,7 +271,6 @@ h2 {
 }
 
 hr {
-  align-self: center;
   width: 90%;
   border: 1px solid black;
 }
@@ -296,60 +296,12 @@ h3 {
   padding-bottom: 4.8px;
 }
 
-
-.editMode {
-  align-items: flex-start;
-}
-
-.editMode hr {
-  margin-bottom: 0;
-}
-
-.editMode input {
-  font-family: 'Montserrat', sans-serif;
-  border: 1px solid black;
-  border-radius: .2em;
-  padding: 0 .3em;
-}
-
-.editMode input:focus {
-  outline: 2px solid black;
-}
-
-#editTitle {
-  width: 70%;
+.editTitle {
+  width: 80%;
   font-size: 1.2em;
   font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
   text-align: right;
-  margin: .5em .4em .1em 0;
+  margin: .5em .4em 0 0;
   align-self: flex-end;
 }
-
-#editAuthor {
-  width: 60%;
-  font-size: 1em;
-  margin: .3em 1em 8em .8em;
-}
-.editMode .bottomInfo{
-  align-self: center;
-  margin-bottom: .5em;
-  width: 80%
-}
-
-.editMode .bottomInfo .switch {
-  margin: 0;
-  font-weight: bold;
-  justify-items: center;
-}
-
-#editPages {
-  width: 20%;
-  text-align: right;
-  margin: 0;
-  font-size: 1em;
-}
-
-.editMode #submit {
-  align-self: center;
-}
-
