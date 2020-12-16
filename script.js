@@ -35,7 +35,7 @@ function updateDisplay(book) {
   const title = document.createElement('h2');
   const author = document.createElement('h3');
   const numPages = document.createElement('p');
-  const read = document.createElement('input');
+  const read = document.createElement('img');
   const hr = document.createElement('hr');
   const bottomInfo = document.createElement('div');
   shelf.appendChild(div);
@@ -47,11 +47,15 @@ function updateDisplay(book) {
   author.textContent = `${book.author}`;
   div.appendChild(bottomInfo);
   bottomInfo.classList.add('bottomInfo');
-  bottomInfo.appendChild(read);
-  read.setAttribute('type', 'checkbox');
-  (book.isRead) ? read.checked = true : read.checked = false;
+  if(book.isRead === true) {
+    bottomInfo.appendChild(read)
+    read.setAttribute('src', '/images/check-mark.png')
+  }
   bottomInfo.appendChild(numPages);
   numPages.textContent = `${book.pages} pages`;
+  if(book.isRead !== true){
+    numPages.classList.add('pagesOnly');
+  }
 }
 
 function sortBookDisplay(arr) {
@@ -93,7 +97,7 @@ function createForm(form) {
 
   inputDiv.appendChild(pages);
   inputDiv.setAttribute('id', 'inputDiv');
-  pages.placeholder = 'Pages';
+  pages.placeholder = 'Number of Pages';
   pages.setAttribute('onfocus', "this.placeholder = ''")
   pages.setAttribute('type', 'text');
 

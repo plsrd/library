@@ -153,8 +153,9 @@ form input[type=text]:focus{
   border-radius: .3em;
   margin: .3em 0 0 .3em;
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.1em;
+  font-size: .8em;
   padding: auto 0;
+  font-weight: bold;
 }
 
 #cancel:hover {
@@ -205,7 +206,7 @@ form input[type=text]:focus{
   background-color: black;
   -webkit-transition: .4s;
   transition: .4s;
-  border-radius: .3em;
+  border-radius: .2em;
   box-sizing: border-box;
   border: 3px solid black
 }
@@ -232,15 +233,16 @@ input:checked + .slider:before {
 }
 
 .on, .off {
+  padding-top: 1px;
   position: absolute;
   transform: translate(-50%,-50%);
   font-size: .8em;
 }
+
 .on{
   color: white;
   top: 50%;
   left: 30%;
-
 }
 
 .off {
@@ -255,10 +257,15 @@ input:checked + .slider .on
 input:checked + .slider .off
 {display: none;}
 
+::placeholder {
+  color: black
+}
+
 h2 {
+  text-align: right;
   font-size: 1.2em;
   align-self: flex-end;
-  margin: .3em .5em 0 0;
+  margin: .3em .5em 0 3em;
   font-weight: bold;
 }
 
@@ -279,8 +286,11 @@ h3 {
   flex-direction: row;
   justify-content: space-between;
   padding-bottom: .3em;
+  align-items: center;
 }
 
-::placeholder {
-  color: black
+.pagesOnly {
+  flex-grow: 1;
+  text-align: right;
+  padding-bottom: 4.8px
 }
