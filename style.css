@@ -6,6 +6,7 @@ main {
   display: flex;
   flex-direction: column;
   padding: 2em 3em;
+  align-content: center;
 }
 
 nav {
@@ -179,8 +180,8 @@ h1 {
   align-self: flex-end;
   position: relative;
   display: inline-block;
-  width: 70px;
-  height: 17px;
+  width: 77px;
+  height: 25px;
   border: 2px solid black;
   border-radius: .3em;
   margin: 0 1.4em 4em 0;
@@ -204,8 +205,8 @@ h1 {
 .slider:before {
   position: absolute;
   content: "";
-  height: 13px;
-  width: 13px;
+  height: 21px;
+  width: 18px;
   top: 2px;
   left: 2px;
   background-color: black;
@@ -228,9 +229,9 @@ input:focus + .slider {
 input:checked + .slider:before {
   background-color: white;
   border: none;
-  -webkit-transform: translateX(53px);
-  -ms-transform: translateX(53px);
-  transform: translateX(53px);
+  -webkit-transform: translateX(55px);
+  -ms-transform: translateX(55px);
+  transform: translateX(55px);
 }
 
 .on {
@@ -245,14 +246,14 @@ input:checked + .slider:before {
 
 .on{
   color: white;
-  top: 50%;
+  top: 51%;
   left: 30%;
 }
 
 .off {
   color: black;
-  top: 50%;
-  left: 61%;
+  top: 51%;
+  left: 63%;
 }
 
 input:checked + .slider .on
@@ -301,65 +302,12 @@ h3 {
 }
 
 
-.editMode {
-  align-items: flex-start;
-}
-
-.editMode hr {
-  margin-bottom: 0;
+.empty::placeholder{
+  color: rgb(172, 11, 11);
+  font-weight: bold;
 }
 
 .editMode input {
-  font-family: 'Montserrat', sans-serif;
-  border: 1px solid black;
-  border-radius: .2em;
-  padding: 0 .3em;
-}
-
-.editMode input:focus {
-  outline: black;
-}
-
-#editTitle {
-  width: 70%;
-  font-size: 1.2em;
-  font-weight: bold;
-  text-align: right;
-  margin: .5em .4em .1em 0;
-  align-self: flex-end;
-}
-
-#editAuthor {
-  width: 60%;
-  font-size: 1em;
-  margin: .3em 1em 9em .8em;
-}
-.editMode .bottomInfo {
-  align-self: center;
-  margin-bottom: .3em;
-  width: 80%;
-  justify-content: space-between;
-}
-
-.editMode .bottomInfo .switch {
-  margin: 0;
-  font-weight: bold;
-  justify-items: center;
-}
-
-#editPages {
-  width: 20%;
-  text-align: right;
-  margin-bottom: 2px;
-  font-size: 1em;
-}
-
-.editMode #submit {
-  align-self: center;
-}
-
-.empty::placeholder{
-  color: rgb(172, 11, 11);
   font-weight: bold;
 }
 

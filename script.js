@@ -16,6 +16,7 @@ const length = document.getElementById('length');
 const unread = document.getElementById('unread');
 
 
+
 function Book() {
   this.info = function() {
     (this.isRead) ? `${title} by ${author}, ${pages} pages, read` : `${title} by ${author}, ${pages} pages, not yet read`
@@ -63,6 +64,13 @@ function updateDisplay(book) {
   if(book.isRead !== true){
     numPages.classList.add('pagesOnly');
   }
+
+  div.addEventListener('click', () => {
+    if (document.getElementById('form') !== null ) { 
+      return
+    }
+    editMode(div);
+  });
 }
 
 function editMode(div) {
@@ -73,7 +81,21 @@ function editMode(div) {
   const titleValue = div.getElementsByTagName('h2')[0].textContent;
   const authorValue = div.getElementsByTagName('h3')[0].textContent;
   const pagesValue = div.getElementsByTagName('p')[0].textContent.split(' ')[0];
-  let isReadValue = myLibrary.find(book => book.title === titleValue).isRead;
+  const isReadValue = myLibrary.find(book => book.title === titleValue).isRead;
+  while(div.firstChild) {
+    div.removeChild(div.firstChild);
+  }
+  createAddBookForm(div);
+  document.getElementById('cancel').textContent = 'DEL';
+  document.getElementById('titleInput').value = titleValue;
+  document.getElementById('authorInput').value = authorValue;
+  document.getElementById('pagesInput').value = pagesValue;
+ 
+  if (isReadValue === true) {
+    document.getElementById('isReadInput').checked = true;
+  }
+
+  document.getElementById('submit').textContent = 'Save'
 }
 
 function sortBookDisplay(arr) {
@@ -102,6 +124,7 @@ function createToggleSwitch(parent) {
   const isRead = document.createElement('input');
   switchLabel.appendChild(isRead);
   isRead.setAttribute('type', 'checkbox');
+  isRead.setAttribute('id', 'isReadInput');
 
   const toggleDiv = document.createElement('div');
   switchLabel.appendChild(toggleDiv);
@@ -126,7 +149,8 @@ function createButton(parent, id, textContent) {
 }
 
 function createAddBookForm(form) {
-
+  form.classList.add('form');  
+  form.setAttribute('id', 'form');
   createButton(form, 'cancel', 'x');
 
   const cancelButton = document.getElementById('cancel');
@@ -149,7 +173,7 @@ function createAddBookForm(form) {
   const titleInput = document.getElementById('titleInput');
   const authorInput = document.getElementById('authorInput');
   const pagesInput = document.getElementById('pagesInput');
-  const isRead = document.getElementById('titleInput');
+  const isRead = document.getElementById('isReadInput');
 
   submitBook.addEventListener('click', () => {
     if (titleInput.value === '') { 
@@ -166,6 +190,7 @@ function createAddBookForm(form) {
   });
 
 }
+
 
 function sortAuthor() {
   libraryByAuth = myLibrary.sort((a, b) => {
@@ -224,8 +249,6 @@ addBookButton.addEventListener('mouseleave', () => {
 
 addBookButton.addEventListener('click', () => {
   const form = document.createElement('div');
-  form.setAttribute('id', 'form');
-  form.classList.add('form');
   if (document.getElementById('form') !== null ) { 
     return
   } else {  
@@ -255,11 +278,6 @@ unread.addEventListener('click', () => {
   sortBookDisplay(libraryUnread);
 });
 
-/*books.forEach(bookDiv => {
-  bookDiv.addEventListener('click', () => {
-    console.log(bookDiv);
-  })
-})*/
 
 addBookToLibrary('Ghostwritten', 'David Mitchell', 496, 'on');
 addBookToLibrary('Early Riser', 'Jasper Fforde', 413, 'on');
