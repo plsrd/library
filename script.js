@@ -23,18 +23,26 @@ function Book() {
   }
 }
 
-function addBookToLibrary(title, author, pages, isRead) {
-  let newBook = Object.create(Book);
-  newBook.title = title;
-  newBook.author = author;
-  newBook.pages = pages;
-  newBook.isRead = isRead;
-  myLibrary.push(newBook);
-  updateDisplay(newBook);
+function addBookToLibrary(title, author, pages, isRead, index) {
+  if (index === undefined) {
+    let newBook = Object.create(Book);
+    newBook.title = title;
+    newBook.author = author;
+    newBook.pages = pages;
+    newBook.isRead = isRead;
+    myLibrary.push(newBook);
+    updateDisplay(newBook);
+  } else {
+    myLibrary[index].title = title;
+    myLibrary[index].author = author;
+    myLibrary[index].pages = pages;
+    myLibrary[index].isRead = isRead;
+    updateDisplay(myLibrary[index], index);
+  }
 }
 
-function updateDisplay(book) {
-  const div = document.createElement('div');
+function updateDisplay(book, index) {
+  const container = document.createElement('div');
   const title = document.createElement('h2');
   const author = document.createElement('h3');
   const numPages = document.createElement('p');
@@ -42,7 +50,16 @@ function updateDisplay(book) {
   const hr = document.createElement('hr');
   const bottomInfo = document.createElement('div');
 
-  shelf.appendChild(div);
+  if (!index) {
+    shelf.appendChild(container);
+    container.setAttribute('id', `${book.title}`);
+  } else {
+    shelf.insertBefore(container, shelf.children[index]);
+    container.setAttribute('id', `${book.title}`);
+  }
+
+  const div = document.getElementById(`${book.title}`);
+
   div.className = 'book';
   div.appendChild(title);
   title.textContent = `${book.title}`;
@@ -79,17 +96,14 @@ function editMode(div) {
   }
   div.classList.add('editMode');
   const titleValue = div.getElementsByTagName('h2')[0].textContent;
-  const authorValue = div.getElementsByTagName('h3')[0].textContent;
-  const pagesValue = div.getElementsByTagName('p')[0].textContent.split(' ')[0];
   const isReadValue = myLibrary.find(book => book.title === titleValue).isRead;
+  const existingIndex = myLibrary.indexOf(myLibrary.find(book => book.title === titleValue));
+
   while(div.firstChild) {
     div.removeChild(div.firstChild);
   }
-  createAddBookForm(div);
-  document.getElementById('cancel').textContent = 'DEL';
-  document.getElementById('titleInput').value = titleValue;
-  document.getElementById('authorInput').value = authorValue;
-  document.getElementById('pagesInput').value = pagesValue;
+
+  createAddBookForm(div, existingIndex);
  
   if (isReadValue === true) {
     document.getElementById('isReadInput').checked = true;
@@ -148,7 +162,7 @@ function createButton(parent, id, textContent) {
   button.setAttribute('id', id);
 }
 
-function createAddBookForm(form) {
+function createAddBookForm(form, index) {
   form.classList.add('form');  
   form.setAttribute('id', 'form');
   createButton(form, 'cancel', 'x');
@@ -164,6 +178,13 @@ function createAddBookForm(form) {
   createTextInputField(inputDiv, 'Title');
   createTextInputField(inputDiv, 'Author');
   createTextInputField(inputDiv, 'Pages');
+
+  if (index !== undefined) {
+    document.getElementById('cancel').textContent = 'DEL';
+    document.getElementById('titleInput').value = myLibrary[index].title;
+    document.getElementById('authorInput').value = myLibrary[index].author;
+    document.getElementById('pagesInput').value = myLibrary[index].pages;
+  }
 
   createToggleSwitch(form);
 
@@ -186,8 +207,7 @@ function createAddBookForm(form) {
       pagesInput.value = 0; 
     }
     shelf.removeChild(document.getElementById('form'));
-    addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, isRead.checked);
-    console.log(isRead.checked);
+    addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, isRead.checked, index);
   });
 
 }
@@ -280,8 +300,8 @@ unread.addEventListener('click', () => {
 });
 
 
-addBookToLibrary('Ghostwritten', 'David Mitchell', 496, true);
 addBookToLibrary('Early Riser', 'Jasper Fforde', 413, true);
+addBookToLibrary('Ghostwritten', 'David Mitchell', 496, true);
 addBookToLibrary('The Shining', 'Stephen King', 688, false);
 addBookToLibrary('Dune', 'Frank Herbert', 704, true);
 addBookToLibrary('Sabriel', 'Garth Nix', 496, true);
