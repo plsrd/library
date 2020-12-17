@@ -167,11 +167,6 @@ function createAddBookForm(form, index) {
   form.setAttribute('id', 'form');
   createButton(form, 'cancel', 'x');
 
-  const cancelButton = document.getElementById('cancel');
-  cancelButton.addEventListener('click', () => {
-    shelf.removeChild(document.getElementById('form'));
-  });
-
   const inputDiv = document.createElement('div');
   form.appendChild(inputDiv);
   inputDiv.setAttribute('id', 'inputDiv');
@@ -195,6 +190,15 @@ function createAddBookForm(form, index) {
   const authorInput = document.getElementById('authorInput');
   const pagesInput = document.getElementById('pagesInput');
   const isRead = document.getElementById('isReadInput');
+
+  const cancelButton = document.getElementById('cancel');
+  cancelButton.addEventListener('click', () => {
+    if (document.getElementById('cancel').textContent === 'DEL') {
+      myLibrary.splice(index, 1)
+    }
+    shelf.removeChild(document.getElementById('form'));
+  });
+
 
   submitBook.addEventListener('click', () => {
     if (titleInput.value === '') { 
