@@ -15,21 +15,18 @@ const title = document.getElementById('title');
 const length = document.getElementById('length');
 const unread = document.getElementById('unread');
 
-
-
-function Book() {
-  this.info = function() {
-    (this.isRead) ? `${title} by ${author}, ${pages} pages, read` : `${title} by ${author}, ${pages} pages, not yet read`
+class Book {
+  constructor(title, author, pages, isRead) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.isRead = isRead;
   }
 }
 
 function addBookToLibrary(title, author, pages, isRead, index) {
   if (index === undefined) {
-    let newBook = Object.create(Book);
-    newBook.title = title;
-    newBook.author = author;
-    newBook.pages = pages;
-    newBook.isRead = isRead;
+    let newBook = new Book(title, author, pages, isRead);
     myLibrary.push(newBook);
     updateDisplay(newBook);
   } else {
@@ -308,12 +305,12 @@ unread.addEventListener('click', () => {
 });
 
 
-/*addBookToLibrary('Early Riser', 'Jasper Fforde', 413, true);
+addBookToLibrary('Early Riser', 'Jasper Fforde', 413, true);
 addBookToLibrary('Ghostwritten', 'David Mitchell', 496, true);
 addBookToLibrary('The Shining', 'Stephen King', 688, false);
 addBookToLibrary('Dune', 'Frank Herbert', 704, true);
 addBookToLibrary('Sabriel', 'Garth Nix', 496, true);
-addBookToLibrary('The Forever War', 'Joe Haldeman', 264, true);*/
+addBookToLibrary('The Forever War', 'Joe Haldeman', 264, true)
 
 
 
