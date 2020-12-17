@@ -28,7 +28,7 @@ function addBookToLibrary(title, author, pages, isRead) {
   newBook.title = title;
   newBook.author = author;
   newBook.pages = pages;
-  newBook.isRead = (isRead === 'on');
+  newBook.isRead = isRead;
   myLibrary.push(newBook);
   updateDisplay(newBook);
 }
@@ -186,7 +186,8 @@ function createAddBookForm(form) {
       pagesInput.value = 0; 
     }
     shelf.removeChild(document.getElementById('form'));
-    addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, isRead.value);
+    addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, isRead.checked);
+    console.log(isRead.checked);
   });
 
 }
@@ -279,12 +280,12 @@ unread.addEventListener('click', () => {
 });
 
 
-addBookToLibrary('Ghostwritten', 'David Mitchell', 496, 'on');
-addBookToLibrary('Early Riser', 'Jasper Fforde', 413, 'on');
-addBookToLibrary('The Shining', 'Stephen King', 688, 'off');
-addBookToLibrary('Dune', 'Frank Herbert', 704, 'on');
-addBookToLibrary('Sabriel', 'Garth Nix', 496, 'on');
-addBookToLibrary('The Forever War', 'Joe Haldeman', 264, 'on');
+addBookToLibrary('Ghostwritten', 'David Mitchell', 496, true);
+addBookToLibrary('Early Riser', 'Jasper Fforde', 413, true);
+addBookToLibrary('The Shining', 'Stephen King', 688, false);
+addBookToLibrary('Dune', 'Frank Herbert', 704, true);
+addBookToLibrary('Sabriel', 'Garth Nix', 496, true);
+addBookToLibrary('The Forever War', 'Joe Haldeman', 264, true);
 
 
 
