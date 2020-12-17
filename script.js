@@ -9,7 +9,7 @@ let isReadValue;
 
 const shelf = document.getElementById('shelf');
 const addBookButton = document.getElementById('add');
-// Sort buttions
+// Sort buttons
 const author = document.getElementById('author');
 const title = document.getElementById('title');
 const length = document.getElementById('length');
@@ -40,6 +40,7 @@ function updateDisplay(book) {
   const read = document.createElement('img');
   const hr = document.createElement('hr');
   const bottomInfo = document.createElement('div');
+
   shelf.appendChild(div);
   div.className = 'book';
   div.appendChild(title);
@@ -49,19 +50,19 @@ function updateDisplay(book) {
   author.textContent = `${book.author}`;
   div.appendChild(bottomInfo);
   bottomInfo.classList.add('bottomInfo');
+
   if(book.isRead === true) {
     bottomInfo.appendChild(read);
     read.setAttribute('src', '/images/check-mark.png')
   }
+
   bottomInfo.appendChild(numPages);
+
   numPages.textContent = `${book.pages} pages`;
+
   if(book.isRead !== true){
     numPages.classList.add('pagesOnly');
   }
-  div.addEventListener('click', () => {
-
-    editMode(div);
-  })
 }
 
 function editMode(div) {
@@ -73,59 +74,7 @@ function editMode(div) {
   const authorValue = div.getElementsByTagName('h3')[0].textContent;
   const pagesValue = div.getElementsByTagName('p')[0].textContent.split(' ')[0];
   let isReadValue = myLibrary.find(book => book.title === titleValue).isRead;
-  while(div.firstChild) {
-    div.removeChild(div.firstChild);
-  }
-  createEditForm(div, titleValue, authorValue, pagesValue, isReadValue);
 }
-
-function createEditForm(div, titleValue, authorValue, pagesValue, isReadValue){
-  const editTitle = document.createElement('input');
-  const editAuthor = document.createElement('input');
-  const editPages = document.createElement('input');
-  const switchLabel = document.createElement('label');
-  const isRead = document.createElement('input');
-  const toggleDiv = document.createElement('div');
-  const on = document.createElement('span');
-  const off = document.createElement('span');
-  const hr = document.createElement('hr');
-  const submitChanges = document.createElement('button');
-  const bottomInfo = document.createElement('div');
-  const switchContainer = document.createElement('div');
-  div.appendChild(editTitle);
-  editTitle.setAttribute('id', 'editTitle');
-  editTitle.placeholder = titleValue;
-  div.appendChild(hr);
-  div.appendChild(editAuthor);
-  editAuthor.placeholder = authorValue;
-  editAuthor.setAttribute('id', 'editAuthor');
-  div.appendChild(bottomInfo);
-  bottomInfo.appendChild(switchContainer);
-  bottomInfo.classList.add('bottomInfo');
-  switchContainer.appendChild(switchLabel);
-  switchLabel.classList.add('switch');
-  switchLabel.appendChild(isRead);
-  isRead.setAttribute('type', 'checkbox');
-  if(isReadValue === true) {
-    isRead.checked = true;
-  }
-  switchLabel.appendChild(toggleDiv);
-  toggleDiv.classList.add('slider');
-  toggleDiv.appendChild(on);
-  on.classList.add('on');
-  on.textContent = 'read';
-  toggleDiv.appendChild(off);
-  off.classList.add('off');
-  off.textContent = 'unread';
-  bottomInfo.appendChild(editPages);
-  editPages.placeholder = pagesValue;
-  editPages.setAttribute('id', 'editPages');
-  div.appendChild(submitChanges);
-  submitChanges.setAttribute('type', 'button');
-  submitChanges.setAttribute('id', 'submit');
-  submitChanges.textContent = 'Save Changes';
-}
-
 
 function sortBookDisplay(arr) {
   while(shelf.firstChild) {
@@ -136,60 +85,86 @@ function sortBookDisplay(arr) {
   });
 }
 
-function createAddBookForm(form) {
-  const submitBook = document.createElement('input');
-  const titleInput = document.createElement('input');
-  const authorInput = document.createElement('input');
-  const pagesInput = document.createElement('input');
-  const inputDiv = document.createElement('div');
-  const cancelButton = document.createElement('button');
+function createTextInputField(parent, type) {
+  const inputField = document.createElement('input');
+  parent.appendChild(inputField);
+  inputField.setAttribute('type', 'text');
+  inputField.setAttribute('id', `${type.toLowerCase()}Input`);
+  inputField.placeholder = `${type}`;
+  inputField.setAttribute('onfocus', "this.placeholder = ''")
+}
+
+function createToggleSwitch(parent) {
   const switchLabel = document.createElement('label');
-  const isRead = document.createElement('input');
-  const toggleDiv = document.createElement('div');
-  const on = document.createElement('span');
-  const off = document.createElement('span');
-  form.setAttribute('id', 'form');
-  form.appendChild(cancelButton);
-  cancelButton.textContent = 'x';
-  cancelButton.setAttribute('id', 'cancel');
-  form.appendChild(inputDiv);
-  inputDiv.appendChild(titleInput);
-  titleInput.placeholder = 'Title';
-  titleInput.setAttribute('onfocus', "this.placeholder = ''")
-  titleInput.setAttribute('type', 'text');
-  inputDiv.appendChild(authorInput);
-  authorInput.placeholder = 'Author';
-  authorInput.setAttribute('onfocus', "this.placeholder = ''")
-  authorInput.setAttribute('type', 'text');
-  inputDiv.appendChild(pagesInput);
-  inputDiv.setAttribute('id', 'inputDiv');
-  pagesInput.placeholder = 'Number of pages';
-  pagesInput.setAttribute('onfocus', "this.placeholder = ''")
-  pagesInput.setAttribute('type', 'text');
-  form.appendChild(switchLabel);
+  parent.appendChild(switchLabel);
   switchLabel.classList.add('switch');
+
+  const isRead = document.createElement('input');
   switchLabel.appendChild(isRead);
   isRead.setAttribute('type', 'checkbox');
+
+  const toggleDiv = document.createElement('div');
   switchLabel.appendChild(toggleDiv);
   toggleDiv.classList.add('slider');
+
+  const on = document.createElement('span');
   toggleDiv.appendChild(on);
   on.classList.add('on');
   on.textContent = 'read';
+
+  const off = document.createElement('span');
   toggleDiv.appendChild(off);
   off.classList.add('off');
   off.textContent = 'unread';
-  form.appendChild(submitBook);
-  submitBook.setAttribute('type', 'button');
-  submitBook.setAttribute('id', 'submit');
-  submitBook.value = 'Add book';
+}
+
+function createButton(parent, id, textContent) {
+  const button = document.createElement('button');
+  parent.appendChild(button);
+  button.textContent = textContent
+  button.setAttribute('id', id);
+}
+
+function createAddBookForm(form) {
+
+  createButton(form, 'cancel', 'x');
+
+  const cancelButton = document.getElementById('cancel');
+  cancelButton.addEventListener('click', () => {
+    shelf.removeChild(document.getElementById('form'));
+  });
+
+  const inputDiv = document.createElement('div');
+  form.appendChild(inputDiv);
+  inputDiv.setAttribute('id', 'inputDiv');
+  createTextInputField(inputDiv, 'Title');
+  createTextInputField(inputDiv, 'Author');
+  createTextInputField(inputDiv, 'Pages');
+
+  createToggleSwitch(form);
+
+  createButton(form, 'submit', 'Add book')
+  
+  const submitBook = document.getElementById('submit');
+  const titleInput = document.getElementById('titleInput');
+  const authorInput = document.getElementById('authorInput');
+  const pagesInput = document.getElementById('pagesInput');
+  const isRead = document.getElementById('titleInput');
+
   submitBook.addEventListener('click', () => {
+    if (titleInput.value === '') { 
+      titleInput.classList.add('empty');
+      return titleInput.placeholder = 'Add title';
+    } else if (authorInput.value === '') { 
+      authorInput.classList.add('empty');
+      return authorInput.placeholder = 'Add author';
+    } else if (pagesInput.value === '') { 
+      pagesInput.value = 0; 
+    }
     shelf.removeChild(document.getElementById('form'));
     addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, isRead.value);
   });
 
-  cancelButton.addEventListener('click', () => {
-    shelf.removeChild(document.getElementById('form'));
-  });
 }
 
 function sortAuthor() {
@@ -248,8 +223,10 @@ addBookButton.addEventListener('mouseleave', () => {
 });
 
 addBookButton.addEventListener('click', () => {
-  const form = document.createElement('form');
-  if (shelf.querySelector('form') !== null ) { 
+  const form = document.createElement('div');
+  form.setAttribute('id', 'form');
+  form.classList.add('form');
+  if (document.getElementById('form') !== null ) { 
     return
   } else {  
   shelf.prepend(form);
