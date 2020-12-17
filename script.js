@@ -50,11 +50,15 @@ function updateDisplay(book, index) {
   const hr = document.createElement('hr');
   const bottomInfo = document.createElement('div');
 
-  if (!index) {
+  if (index === undefined) {
     shelf.appendChild(container);
     container.setAttribute('id', `${book.title}`);
   } else {
-    shelf.insertBefore(container, shelf.children[index]);
+    if (index === 0) {
+      shelf.prepend(container);
+    } else {
+      shelf.insertBefore(container, shelf.children[index]);
+    }
     container.setAttribute('id', `${book.title}`);
   }
 
@@ -304,12 +308,12 @@ unread.addEventListener('click', () => {
 });
 
 
-addBookToLibrary('Early Riser', 'Jasper Fforde', 413, true);
+/*addBookToLibrary('Early Riser', 'Jasper Fforde', 413, true);
 addBookToLibrary('Ghostwritten', 'David Mitchell', 496, true);
 addBookToLibrary('The Shining', 'Stephen King', 688, false);
 addBookToLibrary('Dune', 'Frank Herbert', 704, true);
 addBookToLibrary('Sabriel', 'Garth Nix', 496, true);
-addBookToLibrary('The Forever War', 'Joe Haldeman', 264, true);
+addBookToLibrary('The Forever War', 'Joe Haldeman', 264, true);*/
 
 
 
