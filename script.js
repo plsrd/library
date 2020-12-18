@@ -74,7 +74,7 @@ function updateDisplay(book, index) {
 
   if(book.isRead === true) {
     bottomInfo.appendChild(read);
-    read.setAttribute('src', '/images/check-mark.png')
+    read.setAttribute('src', 'images/check-mark.png')
   }
 
   bottomInfo.appendChild(numPages);
