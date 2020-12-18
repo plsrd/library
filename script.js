@@ -1,14 +1,15 @@
 
 
 let myLibrary = [];
-let libraryByAuth;
-let libraryByTitle;
-let libraryByLength;
-let libraryUnread;
+let libraryByAuth = [];
+let libraryByTitle = [];
+let libraryByLength = [];
+let libraryUnread = [];
 let isReadValue;
 
 const shelf = document.getElementById('shelf');
 const addBookButton = document.getElementById('add');
+
 // Sort buttons
 const author = document.getElementById('author');
 const title = document.getElementById('title');
@@ -27,12 +28,17 @@ class Book {
 function addBookToLibrary(title, author, pages, isRead, index) {
   if (index === undefined) {
     let newBook = new Book(title, author, pages, isRead);
+    if(isRead === false) {libraryUnread.push(newBook)}
     myLibrary.push(newBook);
     updateDisplay(newBook);
   } else {
     myLibrary[index].title = title;
     myLibrary[index].author = author;
     myLibrary[index].pages = pages;
+    if(myLibrary[index].isRead !== isRead && isRead === false) {
+      libraryUnread.push(myLibrary[index]);
+    }
+    libraryUnread = libraryUnread.filter(book => book.isRead === true);
     myLibrary[index].isRead = isRead;
     updateDisplay(myLibrary[index], index);
   }
@@ -89,6 +95,7 @@ function updateDisplay(book, index) {
     }
     editMode(div);
   });
+  div.removeAttribute('id')
 }
 
 function editMode(div) {
@@ -129,6 +136,7 @@ function createTextInputField(parent, type) {
   inputField.setAttribute('id', `${type.toLowerCase()}Input`);
   inputField.placeholder = `${type}`;
   inputField.setAttribute('onfocus', "this.placeholder = ''")
+  inputField.setAttribute('maxlength', '50')
 }
 
 function createToggleSwitch(parent) {
@@ -195,7 +203,8 @@ function createAddBookForm(form, index) {
   const cancelButton = document.getElementById('cancel');
   cancelButton.addEventListener('click', () => {
     if (document.getElementById('cancel').textContent === 'DEL') {
-      myLibrary.splice(index, 1)
+      myLibrary.splice(index, 1);
+      //add function to check if in libraryUnread and remove
     }
     shelf.removeChild(document.getElementById('form'));
   });
@@ -252,10 +261,6 @@ function sortLength() {
   });
 }
 
-function sortUnread() {
-  libraryUnread = myLibrary.slice();
-  libraryUnread = libraryUnread.filter(book => book.isRead === false);
-}
 
 addBookButton.addEventListener('mouseover', (e) => {
   addBookButton.classList.add('hover')
@@ -300,7 +305,6 @@ length.addEventListener('click', () => {
 });
 
 unread.addEventListener('click', () => {
-  sortUnread();
   sortBookDisplay(libraryUnread);
 });
 
