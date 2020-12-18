@@ -1,8 +1,9 @@
 
 
 main {
-  max-width: 100vw;
-  font-family: 'Montserrat', sans-serif;
+  margin: 0 auto;
+  max-width: 1000px;
+  font-family: 'JetBrains Mono', monospace;
   display: flex;
   flex-direction: column;
   padding: 2em 3em;
@@ -28,7 +29,7 @@ nav button {
   width: 50px;
   font-size: 1.5em;
   transition: .1s;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'JetBrains Mono', monospace;
   font-weight: bold;
   background-color: white;
   border: 2px solid black;
@@ -36,7 +37,7 @@ nav button {
   -webkit-box-shadow: 2px 2px 0px 1px rgba(0, 0, 0, 1);
   -moz-box-shadow:    2px 2px 0px 1px rgba(0, 0, 0, 1);
   box-shadow:         2px 2px 0px 1px rgba(0, 0, 0, 1);
-  margin-right: 3em;
+
 }
 
 nav button:focus {
@@ -74,7 +75,7 @@ h1 {
   margin: 0 .2em;
   font-size: .9em;
   border-radius: 9%;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'JetBrains Mono', monospace;
   font-weight: bold;
   background-color: white;
   border: 2px solid black;
@@ -101,9 +102,8 @@ h1 {
 
 #shelf {
   margin: 0 auto;
-  padding: 2em 0;
-  width: 90vw;
-  height: 80vh;
+  padding: 2em;
+  width: 95%;
   display: flex;
   flex-flow: row wrap;
   align-content: flex-start;
@@ -130,7 +130,7 @@ h1 {
 
 .form input[type=text] {
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+font-family: 'JetBrains Mono', monospace;
   border: 2px solid black;
   height: 2em;
   width: 90%;
@@ -158,7 +158,7 @@ h1 {
   border: 2px solid black;
   border-radius: .3em;
   margin: .3em 0 0 .3em;
-  font-family: 'Montserrat', sans-serif;
+font-family: 'JetBrains Mono', monospace;
   font-size: .8em;
   padding: auto 0;
   font-weight: bold;

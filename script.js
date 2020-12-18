@@ -35,10 +35,6 @@ function addBookToLibrary(title, author, pages, isRead, index) {
     myLibrary[index].title = title;
     myLibrary[index].author = author;
     myLibrary[index].pages = pages;
-    if(myLibrary[index].isRead !== isRead && isRead === false) {
-      libraryUnread.push(myLibrary[index]);
-    }
-    libraryUnread = libraryUnread.filter(book => book.isRead === true);
     myLibrary[index].isRead = isRead;
     updateDisplay(myLibrary[index], index);
   }
@@ -104,6 +100,7 @@ function editMode(div) {
   }
   div.classList.add('editMode');
   const titleValue = div.getElementsByTagName('h2')[0].textContent;
+  console.log(titleValue);
   const isReadValue = myLibrary.find(book => book.title === titleValue).isRead;
   const existingIndex = myLibrary.indexOf(myLibrary.find(book => book.title === titleValue));
 
@@ -305,13 +302,14 @@ length.addEventListener('click', () => {
 });
 
 unread.addEventListener('click', () => {
+  libraryUnread = myLibrary.filter(book => book.isRead === false);
   sortBookDisplay(libraryUnread);
 });
 
 
 addBookToLibrary('Early Riser', 'Jasper Fforde', 413, true);
 addBookToLibrary('Ghostwritten', 'David Mitchell', 496, true);
-addBookToLibrary('The Shining', 'Stephen King', 688, false);
+addBookToLibrary('The Shining', 'Stephen King', 688, true);
 addBookToLibrary('Dune', 'Frank Herbert', 704, true);
 addBookToLibrary('Sabriel', 'Garth Nix', 496, true);
 addBookToLibrary('The Forever War', 'Joe Haldeman', 264, true)
