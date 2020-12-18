@@ -315,7 +315,3 @@ addBookToLibrary('The Shining', 'Stephen King', 688, false);
 addBookToLibrary('Dune', 'Frank Herbert', 704, true);
 addBookToLibrary('Sabriel', 'Garth Nix', 496, true);
 addBookToLibrary('The Forever War', 'Joe Haldeman', 264, true)
-
-
-
-
