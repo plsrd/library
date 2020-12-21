@@ -43,16 +43,15 @@ function addBookToLibrary(title, author, pages, isRead, index) {
 }
 
 const getArchive = () => {
-  let keys = Object.keys(localStorage);
-  for (let i = 0; i < keys.length; i++) {
-    let book= `${keys[i]},${localStorage.getItem(keys[i])}`.split(',');
+  let keys = Object.keys(localStorage).filter(key => key.includes('book'));
+  for (let i = keys.length - 1; i < keys.length; i--) {
+    let book= `${keys[i].replace('book:', '')},${localStorage.getItem(keys[i])}`.split(',');
     addBookToLibrary(book[0], book[1], parseInt(book[2]), (book[3] === 'true'));
   }  
 }
 
 const saveToLocalStorage = (book) => {
-  localStorage.setItem(`${book.title}`,`${book.author},${book.pages},${book.isRead}`);
-
+  localStorage.setItem(`book:${book.title}`,`${book.author},${book.pages},${book.isRead}`);
 }
 
 getArchive();
@@ -324,6 +323,4 @@ unread.addEventListener('click', () => {
   libraryUnread = myLibrary.filter(book => book.isRead === false);
   sortBookDisplay(libraryUnread);
 });
-
-
 
