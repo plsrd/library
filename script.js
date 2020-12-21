@@ -322,10 +322,3 @@ unread.addEventListener('click', () => {
   libraryUnread = myLibrary.filter(book => book.isRead === false);
   sortBookDisplay(libraryUnread);
 });
-
-addBookToLibrary('Early Riser', 'Jasper Fforde', 413, true);
-addBookToLibrary('Ghostwritten', 'David Mitchell', 496, true);
-addBookToLibrary('The Shining', 'Stephen King', 688, true);
-addBookToLibrary('Dune', 'Frank Herbert', 704, true);
-addBookToLibrary('Sabriel', 'Garth Nix', 496, true);
-addBookToLibrary('The Forever War', 'Joe Haldeman', 264, true)
