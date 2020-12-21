@@ -53,6 +53,11 @@ const saveToLocalStorage = (book) => {
 
 }
 
+const deleteFromLocalStorage = (book) => {
+  console.log(book);
+  localStorage.removeItem(book);
+}
+
 getArchive();
 
 function updateDisplay(book, index) {
@@ -117,7 +122,6 @@ function editMode(div) {
   }
   div.classList.add('editMode');
   const titleValue = div.getElementsByTagName('h2')[0].textContent;
-  console.log(titleValue);
   const isReadValue = myLibrary.find(book => book.title === titleValue).isRead;
   const existingIndex = myLibrary.indexOf(myLibrary.find(book => book.title === titleValue));
 
@@ -218,7 +222,7 @@ function createAddBookForm(form, index) {
   cancelButton.addEventListener('click', () => {
     if (document.getElementById('cancel').textContent === 'DEL') {
       myLibrary.splice(index, 1);
-      //add function to check if in libraryUnread and remove
+      deleteFromLocalStorage(titleInput.value)
     }
     shelf.removeChild(document.getElementById('form'));
   });
