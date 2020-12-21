@@ -275,6 +275,7 @@ h2 {
   max-width: 100%;
   word-break: break-word;
   line-height: 1.2em;
+  hyphens: auto;
 }
 
 hr {
