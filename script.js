@@ -25,10 +25,12 @@ class Book {
   }
 }
 
+
+
 function addBookToLibrary(title, author, pages, isRead, index) {
   if (index === undefined) {
     let newBook = new Book(title, author, pages, isRead);
-    if(isRead === false) {libraryUnread.push(newBook)}
+    if(isRead === false) { libraryUnread.push(newBook) }
     myLibrary.push(newBook);
     updateDisplay(newBook);
   } else {
@@ -39,6 +41,21 @@ function addBookToLibrary(title, author, pages, isRead, index) {
     updateDisplay(myLibrary[index], index);
   }
 }
+
+const getArchive = () => {
+  let keys = Object.keys(localStorage);
+  for (let i = 0; i < keys.length; i++) {
+    let book= `${keys[i]},${localStorage.getItem(keys[i])}`.split(',');
+    addBookToLibrary(book[0], book[1], parseInt(book[2]), (book[3] === 'true'));
+  }  
+}
+
+const saveToLocalStorage = (book) => {
+  localStorage.setItem(`${book.title}`,`${book.author},${book.pages},${book.isRead}`);
+
+}
+
+getArchive();
 
 function updateDisplay(book, index) {
   const container = document.createElement('div');
@@ -91,7 +108,9 @@ function updateDisplay(book, index) {
     }
     editMode(div);
   });
-  div.removeAttribute('id')
+  div.removeAttribute('id');
+
+  saveToLocalStorage(book);
 }
 
 function editMode(div) {
@@ -307,9 +326,4 @@ unread.addEventListener('click', () => {
 });
 
 
-addBookToLibrary('Early Riser', 'Jasper Fforde', 413, true);
-addBookToLibrary('Ghostwritten', 'David Mitchell', 496, true);
-addBookToLibrary('The Shining', 'Stephen King', 688, true);
-addBookToLibrary('Dune', 'Frank Herbert', 704, true);
-addBookToLibrary('Sabriel', 'Garth Nix', 496, true);
-addBookToLibrary('The Forever War', 'Joe Haldeman', 264, true)
+
