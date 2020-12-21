@@ -314,3 +314,66 @@ h3 {
   font-weight: bold;
 }
 
+@media screen and (max-width: 600px) { 
+ main {
+   max-width: 100vw;
+   margin: 0 auto;
+   padding: 0 .5em;
+ }
+
+ nav {
+   justify-content: center;
+ }
+
+ .logo img {
+  display: none;
+ }
+
+ nav button {
+   font-size: 1em;
+   max-height: 30px;
+   max-width: 30px;
+   margin-left: 1em;
+   text-align: center;
+ }
+
+.view-options {
+  font-size: .7em;
+  text-align: center;
+}
+
+#shelf {
+  margin: 0 auto;
+  padding: 2em 0;
+  max-width: 90vw;
+  justify-content: space-around;
+}
+
+.book {
+  width: 120px;
+  margin: 0;
+  margin-bottom: 1em;
+}
+
+h2 {
+  font-size: .9em;
+}
+
+h3 {
+  font-size: .8em;
+}
+
+.bottomInfo p {
+  font-size: .8em;
+}
+
+.bottomInfo img {
+  width: 20px;
+}
+
+.switch {
+  justify-self: center;
+  margin: 0 auto 2em;
+}
+
+}
