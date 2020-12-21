@@ -42,7 +42,7 @@ const getArchive = () => {
   let keys = Object.keys(localStorage);
   for (let i = 0; i < keys.length; i++) {
     let book= `${keys[i]},${localStorage.getItem(keys[i])}`.split(',');
-    if (book.length === 3){
+    if (book[3] === 'true' || book[3] === 'false'){
       addBookToLibrary(book[0], book[1], parseInt(book[2]), (book[3] === 'true'));
     }
   }  
