@@ -277,7 +277,8 @@ function sortLength() {
 
 
 addBookButton.addEventListener('mouseover', (e) => {
-  addBookButton.classList.add('hover')
+  const isMobile = !window.matchMedia('only screen and (min-width: 768px)').matches;
+  if (!isMobile) {addBookButton.classList.add('hover')}
   let prevEvent = e;
   addBookButton.addEventListener('transitionend', () => { 
     if (addBookButton.classList.contains('hover')) {
