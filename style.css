@@ -13,9 +13,14 @@ main {
 nav {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: 2em 0;
+  margin-bottom: 1em;
+}
+
+nav img {
+  width: 65px;
 }
 
 img {
@@ -25,8 +30,8 @@ img {
 nav button {
   align-self: center;
   border: none;
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
   font-size: 1.5em;
   transition: .1s;
   font-family: 'JetBrains Mono', monospace;
@@ -37,7 +42,6 @@ nav button {
   -webkit-box-shadow: 2px 2px 0px 1px rgba(0, 0, 0, 1);
   -moz-box-shadow:    2px 2px 0px 1px rgba(0, 0, 0, 1);
   box-shadow:         2px 2px 0px 1px rgba(0, 0, 0, 1);
-
 }
 
 nav button:focus {
@@ -60,13 +64,14 @@ nav button:focus {
 }
 
 h1 {
-  font-size: 1.8em;
+  font-size: 2.5em;
   padding-bottom: .1em;
   font-weight: bold;
 }
 
 .logo p {
-  font-size: .9em;
+  font-weight: bold;
+  font-size: 1em;
 }
 
 
